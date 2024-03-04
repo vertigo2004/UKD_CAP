@@ -1,0 +1,28 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Events</title>
+</head>
+<body>
+<table>
+    <thead>
+    <tr>
+        <th>#</th>
+        <th>Name</th>
+        <th>Town</th>
+
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="stream : ${streams}">
+        <td th:text="${stream.id}"/>
+        <td th:text="${stream.name}"/>
+        <td th:text="${stream.town}"/>
+
+    </tr>
+    </tbody>
+</table>
+</body>
+</html>

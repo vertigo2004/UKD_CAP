@@ -6,5 +6,9 @@ import lombok.Data;
 @Data
 @AllArgsConstructor
 public class Stream {
-    // ToDo: add fields
+
+    private Long id;
+    private String name;
+    private String town;
+
 }

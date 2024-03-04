@@ -14,24 +14,35 @@ import java.util.Map;
 @Service
 public class MegaService {
     private static final Map<Long, Event> EVENTS = new HashMap<>() {{
-        put(1L, new Event(1L, "DEVOXX UK", "The Developer Community Conference\n" +
-                "8 - 10 May, 2024 | London\n" +
-                "Join us in London for a global gathering of the developer community at Devoxx UK 2024. A diverse group of inspiring speakers from around the world will cover vital developer-focused topics and share the latest technology advances.",
+        put(1L, new Event(
+                1L,
+                "DEVOXX UK",
+                "The Developer Community Conference\n" +
+                    "8 - 10 May, 2024 | London\n" +
+                    "Join us in London for a global gathering of the developer community at Devoxx UK 2024. A diverse group of inspiring speakers from around the world will cover vital developer-focused topics and share the latest technology advances.",
                 "DEVOXX UK IS ORGANISED BY DMJE LTD. REGISTERED OFFICE 52 HIGH STREET, PINNER, MIDDLESEX. HA5 5PW UNITED KINGDOM. COMPANY REGISTRATION NUMBER 08481796"));
-        put(2L, new Event(2L,"JAX 2024", "The Conference for Java,\n" +
-                "Architecture and Software Innovation\n" +
-                "April 22 – 26, 2024\n" +
-                "Expo: April 23 – 25, 2024\n" +
-                "Rheingoldhalle Mainz or Online",
+        put(2L, new Event(
+                2L,
+                "JAX 2024",
+                "The Conference for Java,\n" +
+                    "Architecture and Software Innovation\n" +
+                    "April 22 – 26, 2024\n" +
+                    "Expo: April 23 – 25, 2024\n" +
+                    "Rheingoldhalle Mainz or Online",
                 "Attendees & Registration\n" +
                         "Customer Service\n" +
                         "+49 (0)69 630089 0\n" +
                         "customerservice@jax.de"));
-        put(3L, new Event(3L, "\n" +
-                "SPRING CONFERENCE Spring I/O 2024",
+        put(3L, new Event(
+                3L,
+                "\n" +
+                    "SPRING CONFERENCE Spring I/O 2024",
                 "Join the Spring community from around the world.There is no better place to share, discuss, collaborate and socialise with other Spring professionals and enthusiasts.",
                 "Contact info@springio.net / Twitter https://twitter.com/spring_io / YouTube https://www.youtube.com/@SpringIOConference /"));
-        put(0L,  new Event(0L, "PM IT Rally", "МИ ОРГАНІЗОВУЄМО ПОДІЇ ДЛЯ РОЗВИТКУ ІТ-СЕРЕДОВИЩА.\u2028НАС ОБ'ЄДНУЄ ОДНА ЦІЛЬ – РІСТ ТА РОЗВИТОК ІТ-СФЕРИ.",
+        put(0L,  new Event(
+                0L,
+                "PM IT Rally",
+                "МИ ОРГАНІЗОВУЄМО ПОДІЇ ДЛЯ РОЗВИТКУ ІТ-СЕРЕДОВИЩА.\u2028НАС ОБ'ЄДНУЄ ОДНА ЦІЛЬ – РІСТ ТА РОЗВИТОК ІТ-СФЕРИ.",
                 "+380 93 746-30-73, info.itrally@gmail.com"));
     }};
 
@@ -83,17 +94,38 @@ public class MegaService {
         return null;
     }
 
+
+
+    private static final Map<Long, Stream> STREAMS = new HashMap<>() {{
+        put(1L, new Stream(
+                1L,
+                "DEVOXX UK",
+                "Lviv"));
+
+        put(2L, new Stream(
+                2L,
+                "JAX 2024",
+                "Kiev"));
+
+        put(3L, new Stream(
+                3L,
+                "SPRING CONFERENCE Spring I/O 2024",
+                "Lviv"));
+
+        put(0L,  new Stream(
+                0L,
+                "PM IT Rally",
+                "Ivano-Frankivsk "));
+    }};
 //    Stream Fixtures:
 //      Lviv IT Rally
     public Stream getStreamById(long id) {
-//    ToDo: Prepare fixtures when DTO is ready.
-//        return new Topic(...);
-        return null;
+    return STREAMS.getOrDefault(id, STREAMS.get(0L));
+
     }
     public Collection<Stream> getAllStreams() {
-//    ToDo: Prepare fixtures when DTO is ready.
-//        return STREAMS.values();
-        return null;
+
+        return STREAMS.values();
     }
 
 
