@@ -100,22 +100,23 @@ public class MegaService {
         put(1L, new Stream(
                 1L,
                 "DEVOXX UK",
-                "Lviv"));
+                "Lviv",1));
 
         put(2L, new Stream(
                 2L,
                 "JAX 2024",
-                "Kiev"));
+                "Kiev",2));
 
         put(3L, new Stream(
                 3L,
                 "SPRING CONFERENCE Spring I/O 2024",
-                "Lviv"));
+                "Lviv",3));
 
         put(0L,  new Stream(
                 0L,
                 "PM IT Rally",
-                "Ivano-Frankivsk "));
+                "Ivano-Frankivsk ",
+                0));
     }};
 //    Stream Fixtures:
 //      Lviv IT Rally

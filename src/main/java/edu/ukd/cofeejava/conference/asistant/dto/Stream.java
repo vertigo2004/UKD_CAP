@@ -9,6 +9,7 @@ public class Stream {
 
     private Long id;
     private String name;
-    private String town;
+    private String location;
+    private int conferenceID;
 
 }
