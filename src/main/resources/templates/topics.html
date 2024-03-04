@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<tr th:each="topic : ${topics}">
+    <td th:text="${topic.id}"/>
+    <td th:text="${topic.name}"/>
+    <td th:text="${topic.location}"/>
+    <td th:text="${topic.conferenceID}"/>
+
+</body>
+</html>

@@ -54,15 +54,23 @@ public class MegaService {
 //14:20    БЛАГОДІЙНИЙ АУКЦІОН
 //14:45    ПАНЕЛЬНА ДИСКУСІЯ
 //15:25    ЗАКРИТТЯ ЗАХОДУ
+private static final Map<Long, Topic> TOPICS = new HashMap<>() {
+    {
+        put(1L, new Topic(1L,"Іван","name","text"));
+
+        put(2L, new Topic(2L,"Іван","name","text"));
+
+        put(3L, new Topic(3L,"Іван","name","text"));
+
+        put(0L, new Topic(0L,"Іван","name","text"));
+    }
+    };
+
     public Topic getTopicById(long id) {
-//    ToDo: Prepare fixtures when DTO is ready.
-//        return new Topic(...);
-        return null;
+        return TOPICS.getOrDefault(id,TOPICS.get(0L));
     }
     public Collection<Topic> getAllTopics() {
-//    ToDo: Prepare fixtures when DTO is ready.
-//        return TOPICS.values();
-        return null;
+        return TOPICS.values();
     }
 
 //      Speaker Fixtures:

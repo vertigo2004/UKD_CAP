@@ -1,5 +1,6 @@
 package edu.ukd.cofeejava.conference.asistant.controller;
 
+import edu.ukd.cofeejava.conference.asistant.dto.Topic;
 import edu.ukd.cofeejava.conference.asistant.service.MegaService;
 import edu.ukd.cofeejava.conference.asistant.dto.Event;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -40,4 +41,18 @@ public class MegaRestController {
     public Collection<Event> getAllEvents() {
         return megaService.getAllEvents();
     }
+
+
+    @GetMapping("/topic/{id}")
+    public Topic getTopicById(@PathVariable("id") final long id){
+        return megaService.getTopicById(id);
+    }
+
+    @GetMapping("/topics")
+    public Collection<Topic> getAllTopics() {
+        return megaService.getAllTopics();
+    }
+
+
+
 }

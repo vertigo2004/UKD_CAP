@@ -14,9 +14,7 @@ public class MegaMVCController {
     private MegaService megaService;
 
     @GetMapping("/event/{id}")
-    public String greeting(@PathVariable("id") final long id,
-                           Model model
-    ) {
+    public String greeting(@PathVariable("id") final long id, Model model) {
         model.addAttribute("event", megaService.getEventById(id));
         return "event";
     }
@@ -26,4 +24,22 @@ public class MegaMVCController {
         model.addAttribute("events", megaService.getAllEvents());
         return "events";
     }
+
+
+    @GetMapping("/topic/{id}")
+    public String topic(@PathVariable("id") final long id, Model model) {
+        model.addAttribute("topic", megaService.getTopicById(id));
+        return "topic";
+    }
+
+    @GetMapping("/topic")
+    public String topic(Model model) {
+        model.addAttribute("topics", megaService.getAllTopics());
+        return "topics";
+    }
+
+
+
+
+
 }
