@@ -1,5 +1,6 @@
 package edu.ukd.cofeejava.conference.asistant.controller;
 
+import edu.ukd.cofeejava.conference.asistant.dto.Speaker;
 import edu.ukd.cofeejava.conference.asistant.service.MegaService;
 import edu.ukd.cofeejava.conference.asistant.dto.Event;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -39,5 +40,15 @@ public class MegaRestController {
 //    Attribute mapping example using URL Path Variables
     public Collection<Event> getAllEvents() {
         return megaService.getAllEvents();
+    }
+    @GetMapping("/speaker/{id}")
+//    Attribute mapping example using URL Path Variables
+    public Speaker getSpeaker(@PathVariable("id") final long id) {
+        return megaService.getSpeakerById(id);
+    }
+    @GetMapping("/speakers")
+//    Attribute mapping example using URL Path Variables
+    public Collection<Speaker> getAllSpeakers() {
+        return megaService.getAllSpeakers();
     }
 }
