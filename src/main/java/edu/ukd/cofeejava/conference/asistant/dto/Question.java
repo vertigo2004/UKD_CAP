@@ -6,5 +6,8 @@ import lombok.Data;
 @Data
 @AllArgsConstructor
 public class Question {
-    // ToDo: add fields
+    private Long id;
+    private Long topicID;
+    private String info;
+    private String host;
 }
