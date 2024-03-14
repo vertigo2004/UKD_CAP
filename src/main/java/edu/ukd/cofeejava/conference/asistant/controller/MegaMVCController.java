@@ -1,5 +1,7 @@
 package edu.ukd.cofeejava.conference.asistant.controller;
 
+import edu.ukd.cofeejava.conference.asistant.dto.Stream;
+import edu.ukd.cofeejava.conference.asistant.repo.StreamRepo;
 import edu.ukd.cofeejava.conference.asistant.service.MegaService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -12,6 +14,8 @@ public class MegaMVCController {
 
     @Autowired
     private MegaService megaService;
+    @Autowired
+    private StreamRepo streamRepo;
 
     @GetMapping("/event/{id}")
     public String greeting(@PathVariable("id") final long id,
@@ -41,7 +45,8 @@ public class MegaMVCController {
 
     @GetMapping("/streams")
     public String stream(Model model) {
-        model.addAttribute("streams", megaService.getAllStreams());
+        model.addAttribute("streams", streamRepo.findAll());
+
         return "streams";
     }
 }

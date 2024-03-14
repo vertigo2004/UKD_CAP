@@ -96,37 +96,38 @@ public class MegaService {
 
 
 
-    private static final Map<Long, Stream> STREAMS = new HashMap<>() {{
-        put(1L, new Stream(
-                1L,
-                "DEVOXX UK",
-                "Lviv",1));
-
-        put(2L, new Stream(
-                2L,
-                "JAX 2024",
-                "Kiev",2));
-
-        put(3L, new Stream(
-                3L,
-                "SPRING CONFERENCE Spring I/O 2024",
-                "Lviv",3));
-
-        put(0L,  new Stream(
-                0L,
-                "PM IT Rally",
-                "Ivano-Frankivsk ",
-                0));
-    }};
+//    private static final Map<Long, Stream> STREAMS = new HashMap<>() {{
+//        put(1L, new Stream(
+//                1L,
+//                "DEVOXX UK",
+//                "Lviv",1));
+//
+//        put(2L, new Stream(
+//                2L,
+//                "JAX 2024",
+//                "Kiev",2));
+//
+//        put(3L, new Stream(
+//                3L,
+//                "SPRING CONFERENCE Spring I/O 2024",
+//                "Lviv",3));
+//
+//        put(0L,  new Stream(
+//                0L,
+//                "PM IT Rally",
+//                "Ivano-Frankivsk ",
+//                0));
+//    }};
 //    Stream Fixtures:
 //      Lviv IT Rally
     public Stream getStreamById(long id) {
-    return STREAMS.getOrDefault(id, STREAMS.get(0L));
+ //   return STREAMS.getOrDefault(id, STREAMS.get(0L));
+    return null;
 
     }
     public Collection<Stream> getAllStreams() {
-
-        return STREAMS.values();
+   //     return STREAMS.values();
+        return null;
     }
 
 
