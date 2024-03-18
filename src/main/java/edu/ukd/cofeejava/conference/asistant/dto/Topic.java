@@ -12,7 +12,7 @@ public class Topic {
     private String Speaker;
     private String Title;
     private String Summary;
-//    private Date ScheduleStart;
-//    private Date ScheduleEnd;
+    private Date ScheduleStart;
+    private Date ScheduleEnd;
 
 }

@@ -7,9 +7,7 @@ import edu.ukd.cofeejava.conference.asistant.dto.Stream;
 import edu.ukd.cofeejava.conference.asistant.dto.Topic;
 import org.springframework.stereotype.Service;
 
-import java.util.Collection;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
 
 @Service
 public class MegaService {
@@ -54,15 +52,24 @@ public class MegaService {
 //14:20    БЛАГОДІЙНИЙ АУКЦІОН
 //14:45    ПАНЕЛЬНА ДИСКУСІЯ
 //15:25    ЗАКРИТТЯ ЗАХОДУ
+
+
+
+
 private static final Map<Long, Topic> TOPICS = new HashMap<>() {
+
+        Calendar c1 = new GregorianCalendar(2024 ,Calendar.MONTH, 5,8,24,123);
+        Calendar c2 = new GregorianCalendar(2024 ,Calendar.MONTH, 5,8,24,123);
+        Date ScheduleStart = c1.getTime();
+        Date ScheduleEnd = c2.getTime();
     {
-        put(1L, new Topic(1L,"Іван","name","text"));
+        put(1L, new Topic(1L,"Іван","name","text", ScheduleStart, ScheduleEnd));
 
-        put(2L, new Topic(2L,"Іван","name","text"));
+        put(2L, new Topic(2L,"Іван","name","text", ScheduleStart, ScheduleEnd));
 
-        put(3L, new Topic(3L,"Іван","name","text"));
+        put(3L, new Topic(3L,"Іван","name","text", ScheduleStart, ScheduleEnd));
 
-        put(0L, new Topic(0L,"Іван","name","text"));
+        put(0L, new Topic(0L,"Іван","name","text", ScheduleStart, ScheduleEnd));
     }
     };
 
