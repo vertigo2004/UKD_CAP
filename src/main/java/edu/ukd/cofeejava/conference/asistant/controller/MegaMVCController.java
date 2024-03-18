@@ -4,8 +4,11 @@ import edu.ukd.cofeejava.conference.asistant.service.MegaService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+
+import java.util.NoSuchElementException;
 
 @Controller
 public class MegaMVCController {
@@ -26,4 +29,10 @@ public class MegaMVCController {
         model.addAttribute("events", megaService.getAllEvents());
         return "events";
     }
+
+    @ExceptionHandler(NoSuchElementException.class)
+    public String noSuchElement() {
+        return "eventNotFound";
+    }
+
 }
