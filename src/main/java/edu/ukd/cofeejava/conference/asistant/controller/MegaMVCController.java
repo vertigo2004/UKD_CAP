@@ -30,15 +30,11 @@ public class MegaMVCController {
         model.addAttribute("events", megaService.getAllEvents());
         return "events";
     }
-
-
-
+    
 
 
     @GetMapping("/stream/{id}")
-    public String stream(@PathVariable("id") final long id,
-                           Model model
-    ) {
+    public String stream(@PathVariable("id") final long id, Model model) {
         model.addAttribute("stream", megaService.getStreamById(id));
         return "stream";
     }

@@ -17,23 +17,31 @@ public class StreamConfig {
 
     @Autowired
     StreamRepo repo;
+    public StreamConfig(StreamRepo repo) {
+        this.repo = repo;
+        init();
+    }
+
     public void init() {
-        StreamEntity streamEntity = new StreamEntity();
-        streamEntity.setName("PM IT Rally");
-        streamEntity.setLocation("Ivano-Frankivsk");
-        repo.save(streamEntity);
+        StreamEntity streamEntity1 = new StreamEntity();
+        streamEntity1.setName("PM IT Rally");
+        streamEntity1.setLocation("Ivano-Frankivsk");
+        repo.save(streamEntity1);
 
-        streamEntity.setName("DEVOXX UK");
-        streamEntity.setLocation("Lviv");
-        repo.save(streamEntity);
+        StreamEntity streamEntity2 = new StreamEntity();
+        streamEntity2.setName("DEVOXX UK");
+        streamEntity2.setLocation("Lviv");
+        repo.save(streamEntity2);
 
-        streamEntity.setName("JAX 2024");
-        streamEntity.setLocation("Kiev");
-        repo.save(streamEntity);
+        StreamEntity streamEntity3 = new StreamEntity();
+        streamEntity3.setName("JAX 2024");
+        streamEntity3.setLocation("Kiev");
+        repo.save(streamEntity3);
 
-        streamEntity.setName("SPRING CONFERENCE Spring I/O 2024");
-        streamEntity.setLocation("Lviv");
-        repo.save(streamEntity);
+        StreamEntity streamEntity0 = new StreamEntity();
+        streamEntity0.setName("SPRING CONFERENCE Spring I/O 2024");
+        streamEntity0.setLocation("Lviv");
+        repo.save(streamEntity0);
 
     }
 
