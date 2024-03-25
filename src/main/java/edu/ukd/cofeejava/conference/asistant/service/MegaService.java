@@ -38,6 +38,16 @@ public class MegaService {
         return eventList;
     }
 
+    public void saveEvent(Event event) {
+        EventEntity eventEntity = new EventEntity();
+        eventEntity.setId(event.getId());
+        eventEntity.setName(event.getName());
+        eventEntity.setInfo(event.getInfo());
+        eventEntity.setHost(event.getHost());
+        eventRepository.save(eventEntity);
+
+    }
+
 
 
 //  Topic fixture:

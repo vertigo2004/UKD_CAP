@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+Форма для події.
+<form action="#" th:action="@{/new_event}" th:object="${event}" method="post">
+
+    Назва події <input type="text" th:field="*{name}" /><br>
+    Загальний опис <input type="text" th:field="*{info}" /><br>
+    Організатор <input type="text" th:field="*{host}" /><br>
+    <input type="submit" >
+    <input type="reset" >
+</form>
+</body>
+</html>
