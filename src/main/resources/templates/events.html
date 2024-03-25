@@ -17,15 +17,15 @@
     </thead>
     <tbody>
     <tr th:each="event : ${events}">
-        <td th:text="${event.id}"/>
-        <td th:text="${event.name}"/>
+        <td th:text="${event.id}">
+        <td><a th:href="@{/edit_event/{id}(id=${event.id})}" th:text="${event.name}"/></td>
         <td th:text="${event.info}"/>
         <td th:text="${event.host}"/>
     </tr>
     </tbody>
 </table>
 
-<a href="/new_event">Створити нову подію</a>
+<p/><a th:href="@{/new_event}">Створити нову подію</a>
 
 </body>
 </html>
