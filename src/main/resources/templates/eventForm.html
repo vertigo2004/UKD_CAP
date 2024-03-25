@@ -8,7 +8,7 @@
 <body>
 Форма для події.
 <form action="#" th:action="@{/new_event}" th:object="${event}" method="post">
-
+    <input type="hidden"th:field="*{id}" />
     Назва події <input type="text" th:field="*{name}" /><br>
     Загальний опис <input type="text" th:field="*{info}" /><br>
     Організатор <input type="text" th:field="*{host}" /><br>

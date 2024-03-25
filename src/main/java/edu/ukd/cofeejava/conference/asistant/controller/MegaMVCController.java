@@ -44,6 +44,13 @@ public class MegaMVCController {
         return "redirect:/events";
     }
 
+    @GetMapping("/edit_event/{id}")
+    public String editEvent(@PathVariable("id") final long id, Model model) {
+        model.addAttribute("event", megaService.getEventById(id));
+        return "eventForm";
+    }
+
+
     @ExceptionHandler(NoSuchElementException.class)
     public String noSuchElement() {
         return "eventNotFound";
