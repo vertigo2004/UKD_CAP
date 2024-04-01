@@ -7,6 +7,8 @@ import edu.ukd.cofeejava.conference.asistant.dto.Stream;
 import edu.ukd.cofeejava.conference.asistant.dto.Topic;
 import edu.ukd.cofeejava.conference.asistant.entity.EventEntity;
 import edu.ukd.cofeejava.conference.asistant.repository.EventRepository;
+import edu.ukd.cofeejava.conference.asistant.entity.StreamEntity;
+import edu.ukd.cofeejava.conference.asistant.repository.StreamRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -21,11 +23,11 @@ public class MegaService {
     @Autowired
     private EventRepository eventRepository;
 
-
+    @Autowired
+    private StreamRepo streamRepo;
 
     public Event getEventById(long id) {
-        EventEntity entity = eventRepository.findById(id).orElseThrow();
-        return Event.fromEntity(entity);
+        return eventRepository.findById(id).orElseThrow().toDto();
     }
 
     public List<Event> getAllEvents() {
@@ -33,7 +35,7 @@ public class MegaService {
         List<Event> eventList = new ArrayList<>();
 
         for (EventEntity entity : eventRepository.findAll()) {
-            eventList.add(Event.fromEntity(entity));
+            eventList.add(entity.toDto());
         }
         return eventList;
     }
@@ -47,8 +49,6 @@ public class MegaService {
         eventRepository.save(eventEntity);
 
     }
-
-
 
 //  Topic fixture:
 //    PM IT Rally 2 березня
@@ -89,19 +89,18 @@ public class MegaService {
         return null;
     }
 
-//    Stream Fixtures:
-//      Lviv IT Rally
     public Stream getStreamById(long id) {
-//    ToDo: Prepare fixtures when DTO is ready.
-//        return new Topic(...);
-        return null;
-    }
-    public Collection<Stream> getAllStreams() {
-//    ToDo: Prepare fixtures when DTO is ready.
-//        return STREAMS.values();
-        return null;
+ //   return STREAMS.getOrDefault(id, STREAMS.get(0L));
+    return streamRepo.findById(id).orElseThrow().toDto();
     }
 
+    public List<Stream> getAllStreams() {
+        List<Stream> result = new ArrayList<>();
+        for (StreamEntity streamEntity : streamRepo.findAll()) {
+            result.add(streamEntity.toDto());
+        }
+        return result;
+    }
 
     public Collection<Question> getQuestionsByTopicId(long topicId) {
 //    ToDo: Prepare fixtures when DTO is ready.

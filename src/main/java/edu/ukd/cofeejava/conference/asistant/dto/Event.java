@@ -14,7 +14,7 @@ public class Event {
     private String info;
     private String host;
 
-    public static Event fromEntity(EventEntity entity) {
-        return new Event(entity.getId(), entity.getName(), entity.getInfo(), entity.getHost());
+    public EventEntity toEntity() {
+        return new EventEntity(this.id, this.name, this.info, this.host);
     }
 }
