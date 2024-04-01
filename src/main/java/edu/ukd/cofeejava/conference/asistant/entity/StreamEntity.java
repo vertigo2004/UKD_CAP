@@ -5,6 +5,8 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -20,10 +22,12 @@ public class StreamEntity {
     private Long id;
     private String name;
     private String location;
-    private int conferenceID;
+    @ManyToOne
+    @JoinColumn(name = "event_id")
+    private EventEntity event;
 
     public Stream toDto() {
-        return new Stream(this.id, this.name, this.location, this.conferenceID);
+        return new Stream(this.id, this.name, this.location, this.event.toDto());
     }
 
 }

@@ -8,7 +8,7 @@ import edu.ukd.cofeejava.conference.asistant.dto.Topic;
 import edu.ukd.cofeejava.conference.asistant.entity.EventEntity;
 import edu.ukd.cofeejava.conference.asistant.repository.EventRepository;
 import edu.ukd.cofeejava.conference.asistant.entity.StreamEntity;
-import edu.ukd.cofeejava.conference.asistant.repository.StreamRepo;
+import edu.ukd.cofeejava.conference.asistant.repository.StreamRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -24,7 +24,7 @@ public class MegaService {
     private EventRepository eventRepository;
 
     @Autowired
-    private StreamRepo streamRepo;
+    private StreamRepository streamRepository;
 
     public Event getEventById(long id) {
         return eventRepository.findById(id).orElseThrow().toDto();
@@ -91,12 +91,12 @@ public class MegaService {
 
     public Stream getStreamById(long id) {
  //   return STREAMS.getOrDefault(id, STREAMS.get(0L));
-    return streamRepo.findById(id).orElseThrow().toDto();
+    return streamRepository.findById(id).orElseThrow().toDto();
     }
 
     public List<Stream> getAllStreams() {
         List<Stream> result = new ArrayList<>();
-        for (StreamEntity streamEntity : streamRepo.findAll()) {
+        for (StreamEntity streamEntity : streamRepository.findAll()) {
             result.add(streamEntity.toDto());
         }
         return result;

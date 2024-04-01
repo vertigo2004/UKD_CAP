@@ -13,9 +13,9 @@ public class Stream {
     private Long id;
     private String name;
     private String location;
-    private int conferenceID;
+    private Event event;
 
     public StreamEntity toEntity() {
-        return new StreamEntity(this.id, this.name, this.location, this.conferenceID);
+        return new StreamEntity(this.id, this.name, this.location, this.event.toEntity());
     }
 }

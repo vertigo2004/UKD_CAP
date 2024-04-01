@@ -6,7 +6,7 @@ import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface StreamRepo extends CrudRepository<StreamEntity, Long> {
+public interface StreamRepository extends CrudRepository<StreamEntity, Long> {
 
 
 
