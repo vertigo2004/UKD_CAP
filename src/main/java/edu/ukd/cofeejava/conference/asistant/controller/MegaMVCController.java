@@ -34,14 +34,14 @@ public class MegaMVCController {
 
 
     @GetMapping("/stream/{id}")
-    public String stream(@PathVariable("id") final long id, Model model) {
+    public String getStream(@PathVariable("id") final long id, Model model) {
         model.addAttribute("stream", megaService.getStreamById(id));
         return "stream";
     }
 
     @GetMapping("/streams")
-    public String stream(Model model) {
-        model.addAttribute("streams", streamRepo.findAll());
+    public String getAllStreams(Model model) {
+        model.addAttribute("streams", megaService.getAllStreams());
 
         return "streams";
     }

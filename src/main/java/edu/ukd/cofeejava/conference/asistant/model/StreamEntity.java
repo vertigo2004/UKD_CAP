@@ -1,5 +1,6 @@
 package edu.ukd.cofeejava.conference.asistant.model;
 
+import edu.ukd.cofeejava.conference.asistant.dto.Stream;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -16,8 +17,10 @@ public class StreamEntity {
     private Long id;
     private String name;
     private String location;
-    @GeneratedValue(strategy= GenerationType.AUTO)
     private int conferenceID;
 
+    public Stream fromEntity() {
+        return new Stream(this.id, this.name, this.location, this.conferenceID);
+    }
 
 }

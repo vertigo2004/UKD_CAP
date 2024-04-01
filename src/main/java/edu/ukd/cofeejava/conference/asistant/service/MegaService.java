@@ -5,14 +5,23 @@ import edu.ukd.cofeejava.conference.asistant.dto.Question;
 import edu.ukd.cofeejava.conference.asistant.dto.Speaker;
 import edu.ukd.cofeejava.conference.asistant.dto.Stream;
 import edu.ukd.cofeejava.conference.asistant.dto.Topic;
+import edu.ukd.cofeejava.conference.asistant.model.StreamEntity;
+import edu.ukd.cofeejava.conference.asistant.repo.StreamRepo;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
+import java.util.Iterator;
+import java.util.List;
 import java.util.Map;
 
 @Service
 public class MegaService {
+
+    @Autowired
+    private StreamRepo streamRepo;
     private static final Map<Long, Event> EVENTS = new HashMap<>() {{
         put(1L, new Event(
                 1L,
@@ -53,8 +62,6 @@ public class MegaService {
         return EVENTS.values();
     }
 
-
-
 //  Topic fixture:
 //    PM IT Rally 2 березня
 //10:00    ВІДКРИТТЯ ПОДІЇ
@@ -94,42 +101,19 @@ public class MegaService {
         return null;
     }
 
-
-
-//    private static final Map<Long, Stream> STREAMS = new HashMap<>() {{
-//        put(1L, new Stream(
-//                1L,
-//                "DEVOXX UK",
-//                "Lviv",1));
-//
-//        put(2L, new Stream(
-//                2L,
-//                "JAX 2024",
-//                "Kiev",2));
-//
-//        put(3L, new Stream(
-//                3L,
-//                "SPRING CONFERENCE Spring I/O 2024",
-//                "Lviv",3));
-//
-//        put(0L,  new Stream(
-//                0L,
-//                "PM IT Rally",
-//                "Ivano-Frankivsk ",
-//                0));
-//    }};
-//    Stream Fixtures:
-//      Lviv IT Rally
     public Stream getStreamById(long id) {
  //   return STREAMS.getOrDefault(id, STREAMS.get(0L));
-    return null;
-
-    }
-    public Collection<Stream> getAllStreams() {
-   //     return STREAMS.values();
-        return null;
+    return streamRepo.findById(id).orElseThrow().fromEntity();
     }
 
+    public List<Stream> getAllStreams() {
+        List<Stream> result = new ArrayList<>();
+        Iterator<StreamEntity> iterator = streamRepo.findAll().iterator();
+        while (iterator.hasNext()) {
+            result.add(iterator.next().fromEntity());
+        }
+        return result;
+    }
 
     public Collection<Question> getQuestionsByTopicId(long topicId) {
 //    ToDo: Prepare fixtures when DTO is ready.
