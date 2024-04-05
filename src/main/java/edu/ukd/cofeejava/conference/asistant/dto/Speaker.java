@@ -6,5 +6,12 @@ import lombok.Data;
 @Data
 @AllArgsConstructor
 public class Speaker {
-    // ToDo: add fields
+
+    private long id;
+    private String name;
+    private String info;
+    private String photo;
+
+//    public static Speaker fromSpeaker( )
+
 }
