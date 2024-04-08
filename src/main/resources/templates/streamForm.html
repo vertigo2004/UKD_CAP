@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+New Stream
+<form action="#" th:action="@{/new_stream}" th:object="${stream}" method="post">
+    <input type="hidden" th:field="*{id}" />
+    Name <input type="text" th:field="*{name}" /><br>
+    Location <input type="text" th:field="*{location}" /><br>
+    Conference ID <input type="text" th:field="*{conferenceID}" /><br>
+    <input type="submit" >
+    <input type="reset" >
+
+</form>
+</body>
+</html>
