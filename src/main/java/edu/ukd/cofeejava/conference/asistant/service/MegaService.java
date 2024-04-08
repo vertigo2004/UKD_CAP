@@ -10,6 +10,7 @@ import edu.ukd.cofeejava.conference.asistant.repository.EventRepository;
 import edu.ukd.cofeejava.conference.asistant.entity.StreamEntity;
 import edu.ukd.cofeejava.conference.asistant.repository.StreamRepo;
 import org.springframework.beans.factory.annotation.Autowired;
+
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -89,18 +90,33 @@ public class MegaService {
         return null;
     }
 
-    public Stream getStreamById(long id) {
- //   return STREAMS.getOrDefault(id, STREAMS.get(0L));
-    return streamRepo.findById(id).orElseThrow().toDto();
+
+    public Stream getStreamById(long id)  {
+        return streamRepo.findById(id).orElseThrow().toDto();
     }
 
-    public List<Stream> getAllStreams() {
-        List<Stream> result = new ArrayList<>();
-        for (StreamEntity streamEntity : streamRepo.findAll()) {
-            result.add(streamEntity.toDto());
+
+        public Collection<Stream> getAllStreams() {
+            List<Stream> streamList = new ArrayList<>();
+
+            for (StreamEntity entity : streamRepo.findAll()) {
+                streamList.add(entity.toDto());
+            }
+            return streamList;
         }
-        return result;
-    }
+
+
+
+
+        public void saveStream(Stream stream) {
+            StreamEntity streamEntity = new StreamEntity();
+            streamEntity.setId(stream.getId());
+            streamEntity.setName(stream.getName());
+            streamEntity.setLocation(stream.getLocation());
+            streamEntity.setConferenceID(stream.getConferenceID());
+            streamRepo.save(streamEntity);
+
+        }
 
     public Collection<Question> getQuestionsByTopicId(long topicId) {
 //    ToDo: Prepare fixtures when DTO is ready.

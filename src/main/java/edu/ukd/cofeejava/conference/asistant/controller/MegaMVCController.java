@@ -1,6 +1,7 @@
 package edu.ukd.cofeejava.conference.asistant.controller;
 
 import edu.ukd.cofeejava.conference.asistant.dto.Event;
+import edu.ukd.cofeejava.conference.asistant.dto.Stream;
 import edu.ukd.cofeejava.conference.asistant.service.MegaService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -53,7 +54,7 @@ public class MegaMVCController {
 
     @ExceptionHandler(NoSuchElementException.class)
     public String noSuchElement() {
-        return "eventNotFound";
+        return "streamNotFound";
     }
 
     @GetMapping("/stream/{id}")
@@ -68,4 +69,25 @@ public class MegaMVCController {
 
         return "streams";
     }
+    @GetMapping("/new_stream")
+    public String newStream(Model model) {
+        model.addAttribute("stream", new Stream());
+        return "streamForm";
+    }
+
+    @PostMapping("/new_stream")
+    public String saveStream(Stream stream) {
+        megaService.saveStream(stream);
+        return "redirect:/streams";
+    }
+
+    @GetMapping("/edit_stream/{id}")
+    public String editStream(@PathVariable("id") final long id, Model model) {
+        model.addAttribute("stream", megaService.getStreamById(id));
+        return "streamForm";
+    }
+
+
+    
+
 }
