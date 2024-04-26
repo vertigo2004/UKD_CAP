@@ -1,6 +1,7 @@
 package edu.ukd.cofeejava.conference.asistant.controller;
 
 import edu.ukd.cofeejava.conference.asistant.dto.Event;
+import edu.ukd.cofeejava.conference.asistant.dto.Stream;
 import edu.ukd.cofeejava.conference.asistant.service.MegaService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -10,6 +11,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
+import java.util.List;
+import java.util.Map;
 import java.util.NoSuchElementException;
 
 @Controller
@@ -28,7 +31,9 @@ public class MegaMVCController {
 
     @GetMapping("/events")
     public String greeting(Model model) {
-        model.addAttribute("events", megaService.getAllEvents());
+        Map<Event, List<Stream>> eventsWithStreams = megaService.getEventsWithStreams();
+        model.addAttribute("events", eventsWithStreams);
+
         return "events";
     }
 
@@ -67,5 +72,11 @@ public class MegaMVCController {
         model.addAttribute("streams", megaService.getAllStreams());
 
         return "streams";
+    }
+
+    @GetMapping("/delete_event/{id}")
+    public String deleteEvent(@PathVariable("id") final long id) {
+        megaService.deleteEvent(id);
+        return "redirect:/events";
     }
 }

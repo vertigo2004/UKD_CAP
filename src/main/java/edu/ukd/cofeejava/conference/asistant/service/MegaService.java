@@ -9,15 +9,19 @@ import edu.ukd.cofeejava.conference.asistant.entity.EventEntity;
 import edu.ukd.cofeejava.conference.asistant.repository.EventRepository;
 import edu.ukd.cofeejava.conference.asistant.entity.StreamEntity;
 import edu.ukd.cofeejava.conference.asistant.repository.StreamRepository;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 
 @Service
+@Slf4j
 public class MegaService {
 
     @Autowired
@@ -38,6 +42,19 @@ public class MegaService {
             eventList.add(entity.toDto());
         }
         return eventList;
+    }
+
+    public Map<Event, List<Stream>> getEventsWithStreams() {
+        Map<Event, List<Stream>> resultMap = new HashMap<>();
+        for (EventEntity event : eventRepository.findAll()) {
+            List<Stream> result = new ArrayList<>();
+            for (StreamEntity stream : streamRepository.findByEvent(event)) {
+                result.add(stream.toDto());
+            }
+            resultMap.put(event.toDto(), result);
+        }
+
+        return resultMap;
     }
 
     public void saveEvent(Event event) {
@@ -108,4 +125,8 @@ public class MegaService {
         return null;
     }
 
+    public void deleteEvent(long id) {
+        log.info("Delete {}", id);
+        eventRepository.deleteById(id);
+    }
 }

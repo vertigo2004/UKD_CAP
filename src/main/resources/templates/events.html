@@ -6,22 +6,33 @@
     <title>Events</title>
 </head>
 <body>
-<table>
+<table border="1">
     <thead>
     <tr>
         <th>#</th>
         <th>Name</th>
         <th>Information</th>
         <th>Host</th>
+        <th>Streams</th>
+        <th>Options</th>
     </tr>
     </thead>
     <tbody>
-    <tr th:each="event : ${events}">
-        <td th:text="${event.id}">
-        <td><a th:href="@{/edit_event/{id}(id=${event.id})}" th:text="${event.name}"/></td>
-        <td th:text="${event.info}"/>
-        <td th:text="${event.host}"/>
+    <tr th:each="event : ${events.entrySet()}">
+        <td th:text="${event.key.id}">
+        <td><a th:href="@{/edit_event/{id}(id=${event.key.id})}" th:text="${event.key.name}"/></td>
+        <td th:text="${event.key.info}"/>
+        <td th:text="${event.key.host}"/>
+        <td>
+            <table border = 1>
+                <tr th:each="stream : ${event.value}">
+                    <td th:text="${stream.name}"/>
+                    <td th:text="${stream.location}"/>
+                </tr>
+            </table>
+        <td><a th:href="@{/delete_event/{id}(id=${event.key.id})}" th:text="X"/></td>
     </tr>
+
     </tbody>
 </table>
 
