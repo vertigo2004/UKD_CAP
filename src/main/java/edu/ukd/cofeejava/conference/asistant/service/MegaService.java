@@ -9,13 +9,16 @@ import edu.ukd.cofeejava.conference.asistant.entity.EventEntity;
 import edu.ukd.cofeejava.conference.asistant.repository.EventRepository;
 import edu.ukd.cofeejava.conference.asistant.entity.StreamEntity;
 import edu.ukd.cofeejava.conference.asistant.repository.StreamRepository;
+import edu.ukd.cofeejava.conference.asistant.repository.TopicRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 
 @Service
@@ -27,6 +30,9 @@ public class MegaService {
 
     @Autowired
     private StreamRepository streamRepository;
+
+    @Autowired
+    private TopicRepository topicRepository;
 
     public Event getEventById(long id) {
         return eventRepository.findById(id).orElseThrow().toDto();
@@ -65,42 +71,13 @@ public class MegaService {
 
     }
 
-//  Topic fixture:
-//    PM IT Rally 2 березня
-//10:00    ВІДКРИТТЯ ПОДІЇ
-//10:15    ОКСАНА ДИМІНСЬКА    From Zero to Hero
-//11:20    ОРЕСТ ДМИТРАСЕВИЧ    Еволюція проектного менеджменту
-//12:20    ОБІД
-//13:20    АННА ДУМА    Project vs. Product Management
-//14:20    БЛАГОДІЙНИЙ АУКЦІОН
-//14:45    ПАНЕЛЬНА ДИСКУСІЯ
-//15:25    ЗАКРИТТЯ ЗАХОДУ
-
-
-
-
-private static final Map<Long, Topic> TOPICS = new HashMap<>() {
-
-        Calendar c1 = new GregorianCalendar(2024 ,Calendar.MONTH, 5,8,24,123);
-        Calendar c2 = new GregorianCalendar(2024 ,Calendar.MONTH, 5,8,24,123);
-        Date ScheduleStart = c1.getTime();
-        Date ScheduleEnd = c2.getTime();
-    {
-        put(1L, new Topic(1L,"Іван","name","text", ScheduleStart, ScheduleEnd));
-
-        put(2L, new Topic(2L,"Іван","name","text", ScheduleStart, ScheduleEnd));
-
-        put(3L, new Topic(3L,"Іван","name","text", ScheduleStart, ScheduleEnd));
-
-        put(0L, new Topic(0L,"Іван","name","text", ScheduleStart, ScheduleEnd));
-    }
-    };
-
     public Topic getTopicById(long id) {
-        return TOPICS.getOrDefault(id,TOPICS.get(0L));
+        return topicRepository.findById(id).orElseThrow().toDto();
     }
-    public Collection<Topic> getAllTopics() {
-        return TOPICS.values();
+    public List<Topic> getAllTopics() {
+        List<Topic> topics = new ArrayList<>();
+        topicRepository.findAll().forEach(topicEntity -> topics.add(topicEntity.toDto()));
+        return topics;
     }
 
 //      Speaker Fixtures:

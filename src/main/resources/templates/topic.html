@@ -1,16 +1,23 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
 </head>
 <body>
+<h3 th:text="${#calendars.format(topic.scheduleStart,'dd MMMM yyyy')}" />
+<h1 th:text="${topic.title}"/>
+<h2 th:text="${topic.speaker}"/>
+<p th:text="${topic.summary}"/>
+<p> <span th:text="${#calendars.format(topic.scheduleStart,'hh:mm')}"/> - <span th:text="${#calendars.format(topic.scheduleEnd,'hh:mm')}"/></p>
 
-<tr th:each="topic : ${topics}">
-    <td th:text="${topic.id}"/>
-    <td th:text="${topic.name}"/>
-    <td th:text="${topic.location}"/>
-    <td th:text="${topic.conferenceID}"/>
+<table>
+    <tr th:each="question : ${topic.questions}">
+        <td th:text="${question.id}"/>
+        <td th:text="${question.text}"/>
+        <td th:text="${question.likes}"/>
+    </tr>
+</table>
 
 </body>
 </html>

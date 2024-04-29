@@ -8,7 +8,6 @@ import lombok.Data;
 public class Question {
 
     private long id;
-    private Topic topicId;
+    private String text;
     private int likes;
-    private int guest;
 }

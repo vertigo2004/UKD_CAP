@@ -11,6 +11,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
+import java.util.List;
+import java.util.Map;
 import java.util.NoSuchElementException;
 
 @Controller
@@ -83,7 +85,7 @@ public class MegaMVCController {
         return "topic";
     }
 
-    @GetMapping("/topic")
+    @GetMapping("/topics")
     public String topic(Model model) {
         model.addAttribute("topics", megaService.getAllTopics());
         return "topics";
