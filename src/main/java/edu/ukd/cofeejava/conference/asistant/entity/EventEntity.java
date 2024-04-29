@@ -1,5 +1,6 @@
 package edu.ukd.cofeejava.conference.asistant.entity;
 
+import edu.ukd.cofeejava.conference.asistant.dto.Event;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -22,4 +23,8 @@ public class EventEntity {
     @Column(length = 1000)
     private String info;
     private String host;
+
+    public Event toDto() {
+        return new Event(this.id, this.name, this.info, this.host);
+    }
 }

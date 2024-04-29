@@ -5,9 +5,12 @@
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 </head>
 <body>
-<h1 th:text="${event.name}" />
-<h2 th:text="${event.info}" />
-<h3 th:text="${event.host}" />
-<h3 th:text="${event.id}" />
+<h1 th:text="${stream.name}" />
+<hr>
+<h2 th:text="${stream.event.name}" />
+<h2 th:text="${stream.event.info}" />
+<h2 th:text="${stream.event.host}" />
+<hr>
+<h3 th:text="${stream.location}" />
 </body>
 </html>
