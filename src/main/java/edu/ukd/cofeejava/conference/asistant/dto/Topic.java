@@ -3,7 +3,7 @@ package edu.ukd.cofeejava.conference.asistant.dto;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 
-import java.util.Date;
+import java.time.LocalDateTime;
 import java.util.List;
 
 @Data
@@ -13,8 +13,8 @@ public class Topic {
     private String speaker;
     private String title;
     private String summary;
-    private Date scheduleStart;
-    private Date scheduleEnd;
+    private LocalDateTime scheduleStart;
+    private LocalDateTime scheduleEnd;
     private List<Question> questions;
 
 }

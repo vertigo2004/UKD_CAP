@@ -14,8 +14,8 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.io.Serializable;
-import java.util.Date;
+
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -34,8 +34,10 @@ public class TopicEntity {
     private String title;
     @Column(length = 1000)
     private String summary;
-    private Date scheduleStart;
-    private Date scheduleEnd;
+    @Column(columnDefinition = "TIMESTAMP")
+    private LocalDateTime scheduleStart;
+    @Column(columnDefinition = "TIMESTAMP")
+    private LocalDateTime scheduleEnd;
     @OneToMany(fetch = FetchType.EAGER)
     @JoinColumn(name = "topic_id")
     private List<QuestionEntity> questions;

@@ -5,11 +5,11 @@
     <title>Title</title>
 </head>
 <body>
-<h3 th:text="${#calendars.format(topic.scheduleStart,'dd MMMM yyyy')}" />
+<h3 th:text="${#temporals.format(topic.scheduleStart, 'dd.MM.yyyy')}"/>
 <h1 th:text="${topic.title}"/>
 <h2 th:text="${topic.speaker}"/>
 <p th:text="${topic.summary}"/>
-<p> <span th:text="${#calendars.format(topic.scheduleStart,'hh:mm')}"/> - <span th:text="${#calendars.format(topic.scheduleEnd,'hh:mm')}"/></p>
+<p> <span th:text="${#temporals.format(topic.scheduleStart, 'HH:mm')}"/> - <span th:text="${#temporals.format(topic.scheduleEnd, 'HH:mm')}"/></p>
 
 <table>
     <tr th:each="question : ${topic.questions}">

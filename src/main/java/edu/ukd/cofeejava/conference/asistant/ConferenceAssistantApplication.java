@@ -13,11 +13,9 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 
+import java.time.LocalDateTime;
 import java.util.Arrays;
 import java.util.Calendar;
-import java.util.Collections;
-import java.util.Date;
-import java.util.GregorianCalendar;
 import java.util.List;
 
 @SpringBootApplication
@@ -62,34 +60,20 @@ public class ConferenceAssistantApplication {
 					"МИ ОРГАНІЗОВУЄМО ПОДІЇ ДЛЯ РОЗВИТКУ ІТ-СЕРЕДОВИЩА.\u2028НАС ОБ'ЄДНУЄ ОДНА ЦІЛЬ – РІСТ ТА РОЗВИТОК ІТ-СФЕРИ.",
 					"+380 93 746-30-73, info.itrally@gmail.com"));
 
-			StreamEntity streamEntity = new StreamEntity();
-			streamEntity.setName("Java Development");
-			streamEntity.setLocation("Аудиторія 330/5");
-			streamEntity.setEvent(savedEvent);
-			streamRepo.save(streamEntity);
+			StreamEntity stream = new StreamEntity(1L, "Java Development", "Аудиторія 330/5", savedEvent);
+			streamRepo.save(stream);
 
-			streamEntity = new StreamEntity();
-			streamEntity.setName("QA Automation");
-			streamEntity.setLocation("Аудиторія 326");
-			streamEntity.setEvent(savedEvent);
-			streamRepo.save(streamEntity);
+			stream = new StreamEntity(2L, "QA Automation", "Аудиторія 326", savedEvent);
+			streamRepo.save(stream);
 
-			streamEntity = new StreamEntity();
-			streamEntity.setName("BigData/MachineLearning/AI");
-			streamEntity.setLocation("Аудиторія 411");
-			streamEntity.setEvent(savedEvent);
-			streamRepo.save(streamEntity);
+			stream = new StreamEntity(3L, "BigData/MachineLearning/AI", "Аудиторія 411", savedEvent);
+			streamRepo.save(stream);
 
-			streamEntity = new StreamEntity();
-			streamEntity.setName("IT Management");
-			streamEntity.setLocation("Актовий зал");
-			streamEntity.setEvent(savedEvent);
-			streamRepo.save(streamEntity);
+			stream = new StreamEntity(4L, "IT Management", "Актовий зал", savedEvent);
+			streamRepo.save(stream);
 
-			Calendar c1 = new GregorianCalendar(2024 ,Calendar.MONTH, 5,10,15,0);
-			Calendar c2 = new GregorianCalendar(2024 ,Calendar.MONTH, 5,11,15,0);
-			Date scheduleStart = c1.getTime();
-			Date scheduleEnd = c2.getTime();
+			LocalDateTime start = LocalDateTime.of(2024, Calendar.MONTH, 5,10,15);
+			LocalDateTime end = start.plusHours(1);
 
 			//  Topic fixture:
 //    PM IT Rally 2 березня
@@ -107,15 +91,14 @@ public class ConferenceAssistantApplication {
 			QuestionEntity q3 = questionRepo.save(new QuestionEntity(3L, "question3", 3));
 			List<QuestionEntity> questions = Arrays.asList(q1, q2, q3);
 
-			TopicEntity t1 = new TopicEntity(1L, "ОКСАНА ДИМІНСЬКА", "From Zero to Hero", "From Zero to Hero Summary", scheduleStart, scheduleEnd, questions);
-			c1 = new GregorianCalendar(2024 ,Calendar.MONTH, 5,11,20,0);
-			c2 = new GregorianCalendar(2024 ,Calendar.MONTH, 5,12,20,0);
-			TopicEntity t2 = new TopicEntity(2L, "ОРЕСТ ДМИТРАСЕВИЧ", "Еволюція проектного менеджменту", "Еволюція проектного менеджменту Summary", c1.getTime(), c2.getTime(), Collections.emptyList());
+			TopicEntity t1 = new TopicEntity(1L, "ОКСАНА ДИМІНСЬКА", "From Zero to Hero", "From Zero to Hero Summary", start, end, questions);
+			start = LocalDateTime.of(2024, Calendar.MONTH, 5,11,20);
+			end = start.plusHours(1);
+			TopicEntity t2 = new TopicEntity(2L, "ОРЕСТ ДМИТРАСЕВИЧ", "Еволюція проектного менеджменту", "Еволюція проектного менеджменту Summary", start, end, null);
 
-			c1 = new GregorianCalendar(2024 ,Calendar.MONTH, 5,13,20,0);
-			c2 = new GregorianCalendar(2024 ,Calendar.MONTH, 5,14,20,0);
-			TopicEntity t3 = new TopicEntity(3L, "АННА ДУМА", "Project vs. Product Management", "Project vs. Product Management Summary", c1.getTime(), c2.getTime(), Collections.emptyList());
-
+			start = LocalDateTime.of(2024 ,Calendar.MONTH, 5,13,20);
+			end = start.plusHours(1);
+			TopicEntity t3 = new TopicEntity(3L, "АННА ДУМА", "Project vs. Product Management", "Project vs. Product Management Summary", start, end, null);
 			topicRepo.saveAll(Arrays.asList(t1, t2, t3));
 
 			TopicEntity topicEntity1 = topicRepo.findById(1L).get();
